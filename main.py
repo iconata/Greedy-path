@@ -1,28 +1,25 @@
+import random
 
-# Test input with matrix 4x4
-# with open('test_inputs/test01_4x4', 'r') as f:
-#     matrix = [[int(num) for num in line.split(', ')] for line in f]
 
-# Test input with matrix 8x8
-# with open('test_inputs/test02_8x8', 'r') as f:
-#     matrix = [[int(num) for num in line.split(', ')] for line in f]
+def generate_random_matrix():
+    matrix = []
+    temp_list = []
+    for row in range(height):
+        for col in range(width):
+            temp_list.append(random.randint(0, 10))
+        matrix.append(temp_list)
+        temp_list = []
 
-# Test input with matrix 30x30
-with open('test_inputs/test03_30x30', 'r') as f:
-    mat = [[int(num) for num in line.split(', ')] for line in f]
-
-width = len(mat[0])
-height = len(mat)
+    return matrix
 
 
 def find_path(matrix):
-    global width
-    global height
-
-    path = [mat[0][0]]
+    for i in matrix:
+        print i
+    path = [matrix[0][0]]
 
     curr_col = 0
-    result = mat[0][0]
+    result = matrix[0][0]
 
     for row in range(height):
         for col in range(curr_col, width):
@@ -52,4 +49,8 @@ def find_path(matrix):
     return path
 
 
-print find_path(mat)
+if __name__ == '__main__':
+    width = int(input("Please enter width of the matrix: "))
+    height = int(input("Please enter height of the matrix: "))
+
+    print find_path(generate_random_matrix())
